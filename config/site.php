@@ -12,6 +12,11 @@ return [
             'icon' => 'fa fa-home',
             'route' => 'index',
         ],
+        [
+            'title' => 'Department',
+            'icon' => 'fa fa-building-o',
+            'route' => 'department.index',
+        ],
     ],
     'developer' => [
         'name' => '',

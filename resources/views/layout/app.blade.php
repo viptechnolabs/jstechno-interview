@@ -28,6 +28,7 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('build/css/custom.min.css') }}" rel="stylesheet">
+    @stack('head')
 </head>
 
 <body class="nav-md">
@@ -149,6 +150,7 @@
 
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('build/js/custom.min.js') }}"></script>
+@stack('script')
 </body>
 
 </html>

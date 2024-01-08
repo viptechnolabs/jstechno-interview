@@ -32,12 +32,14 @@ Route::middleware('auth')->group(function () {
 
     // Department
     Route::prefix('department')
-        ->as('cart.')
+        ->as('department.')
         ->controller(DepartmentController::class)
         ->group(function () {
             Route::get('', 'index')->name('index');
+            Route::get('add', 'add')->name('add');
             Route::post('store', 'store')->name('store');
-            Route::get('checkout', 'checkout')->name('checkout');
+            Route::get('edit/{slug}', 'edit')->name('edit');
+            Route::put('', 'update')->name('update');
             Route::delete('', 'destroy')->name('destroy');
         });
 
