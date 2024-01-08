@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\SalaryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +68,19 @@ Route::middleware('auth')->group(function () {
             Route::get('add', 'add')->name('add');
             Route::post('store', 'store')->name('store');
             Route::get('edit/{slug}', 'edit')->name('edit');
+            Route::put('', 'update')->name('update');
+            Route::delete('', 'destroy')->name('destroy');
+        });
+
+    // Salary
+    Route::prefix('salary')
+        ->as('salary.')
+        ->controller(SalaryController::class)
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('add', 'add')->name('add');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('', 'update')->name('update');
             Route::delete('', 'destroy')->name('destroy');
         });

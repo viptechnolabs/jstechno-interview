@@ -22,6 +22,11 @@ return [
             'icon' => 'fa fa-table',
             'route' => 'position.index',
         ],
+        [
+            'title' => 'Salary',
+            'icon' => 'fa fa-money',
+            'route' => 'salary.index',
+        ],
     ],
     'developer' => [
         'name' => '',
