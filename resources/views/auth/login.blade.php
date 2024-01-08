@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('login.submit') }}" method="POST">
+            <form action="{{ route('auth.login.submit') }}" method="POST">
                 @csrf
                 <h1>Login Form</h1>
                 <br>

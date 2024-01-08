@@ -8,4 +8,13 @@ class IndexController extends Controller
     {
         return view('index');
     }
+
+    public function logout()
+    {
+        session()->flush();
+
+        auth()->logout();
+
+        return redirect()->route('auth.login.create');
+    }
 }
