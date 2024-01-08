@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\PositionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,19 @@ Route::middleware('auth')->group(function () {
     Route::prefix('department')
         ->as('department.')
         ->controller(DepartmentController::class)
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('add', 'add')->name('add');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{slug}', 'edit')->name('edit');
+            Route::put('', 'update')->name('update');
+            Route::delete('', 'destroy')->name('destroy');
+        });
+
+    // Position
+    Route::prefix('position')
+        ->as('position.')
+        ->controller(PositionController::class)
         ->group(function () {
             Route::get('', 'index')->name('index');
             Route::get('add', 'add')->name('add');

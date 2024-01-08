@@ -17,6 +17,11 @@ return [
             'icon' => 'fa fa-building-o',
             'route' => 'department.index',
         ],
+        [
+            'title' => 'Position',
+            'icon' => 'fa fa-table',
+            'route' => 'position.index',
+        ],
     ],
     'developer' => [
         'name' => '',
