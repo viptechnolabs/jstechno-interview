@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\SalaryController;
@@ -76,6 +77,19 @@ Route::middleware('auth')->group(function () {
     Route::prefix('salary')
         ->as('salary.')
         ->controller(SalaryController::class)
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('add', 'add')->name('add');
+            Route::post('store', 'store')->name('store');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::put('', 'update')->name('update');
+            Route::delete('', 'destroy')->name('destroy');
+        });
+
+    // Employee
+    Route::prefix('employee')
+        ->as('employee.')
+        ->controller(EmployeeController::class)
         ->group(function () {
             Route::get('', 'index')->name('index');
             Route::get('add', 'add')->name('add');
