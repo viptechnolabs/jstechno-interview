@@ -1,28 +1,42 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Request;
 use App\Http\Requests\SalaryRequest;
+use App\Http\Resources\SalaryResource;
 use App\Models\Position;
 use App\Models\Salary;
+use App\Traits\ResponseTrait;
 use Illuminate\Support\Str;
 
 class SalaryController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    use ResponseTrait;
+
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $salaries = Salary::all();
-        return view('salary.index', compact('salaries'));
+        return SalaryResource::collection($salaries)
+            ->additional([
+                'message' => 'Salary List',
+                'status' => true
+            ]);
     }
 
-    public function add(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function details($id): SalaryResource
     {
-        $positions = Position::all();
-        return view('salary.add', compact('positions'));
+        $salary = Salary::find($id);
+
+        return (new SalaryResource($salary))
+            ->additional([
+                'message' => 'Salary Details',
+                'status' => true
+            ]);
     }
 
-    public function store(SalaryRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(Request $request): SalaryResource
     {
         // Request params
         $positions_id = $request->input('positions_id');
@@ -41,18 +55,14 @@ class SalaryController extends Controller
         $salary->gross_salary = $gross_salary;
         $salary->save();
 
-        session()->flash('success', 'Salary added successfully');
-        return redirect()->route('salary.index');
+        return (new SalaryResource($salary))
+            ->additional([
+                'message' => 'Position added successfully',
+                'status' => true
+            ]);
     }
 
-    public function edit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
-        $salary = Salary::find($id);
-        $positions = Position::all();
-        return view('salary.edit', compact('salary','positions'));
-    }
-
-    public function update(SalaryRequest $request): \Illuminate\Http\RedirectResponse
+    public function update(Request $request): SalaryResource
     {
         // Request params
         $id = $request->input('id');
@@ -72,22 +82,20 @@ class SalaryController extends Controller
         $salary->gross_salary = $gross_salary;
         $salary->save();
 
-        session()->flash('success', 'Salary updated successfully');
-        return redirect()->route('salary.index');
+        return (new SalaryResource($salary))
+            ->additional([
+                'message' => 'Salary updated successfully',
+                'status' => true
+            ]);
     }
 
-    public function destroy(Request $request): \Illuminate\Http\JsonResponse
+    public function delete(Request $request, $id): \Illuminate\Http\JsonResponse
     {
-        // Request params
-        $id = $request->input('id');
         $salary = Salary::find($id);
-
         if (!$salary) {
-            return response()->json(['error' => 'Salary not found'], 404);
+            return $this->error(message: 'Salary not found');
         }
-
         $salary->delete();
-
-        return response()->json(['message' => 'Salary deleted successfully']);
+        return $this->success(message: 'Salary deleted successfully.');
     }
 }

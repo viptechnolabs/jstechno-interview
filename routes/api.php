@@ -4,6 +4,7 @@ use App\Http\Controllers\API\DepartmentController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\PositionController;
 use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\SalaryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,17 @@ Route::middleware('auth:sanctum')
                 Route::get('{slug}', 'details')->name('details');
                 Route::post('store', 'store')->name('store');
                 Route::put('update', 'update')->name('update');
-                Route::delete('{slug}', 'delete')->name('delete');
+                Route::delete('{id}', 'delete')->name('delete');
+            });
+
+        // Salary
+        Route::prefix('salary')
+            ->controller(SalaryController::class)
+            ->group(function () {
+                Route::get('', 'index')->name('index');
+                Route::get('{id}', 'details')->name('details');
+                Route::post('store', 'store')->name('store');
+                Route::put('update', 'update')->name('update');
+                Route::delete('{id}', 'delete')->name('delete');
             });
     });

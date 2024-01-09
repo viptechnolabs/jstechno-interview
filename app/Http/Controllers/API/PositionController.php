@@ -35,7 +35,7 @@ class PositionController extends Controller
             ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): PositionResource
     {
         // Request params
         $name = $request->input('name');
@@ -54,7 +54,7 @@ class PositionController extends Controller
             ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request): PositionResource
     {
         // Request params
         $id = $request->input('id');
@@ -74,7 +74,7 @@ class PositionController extends Controller
             ]);
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $position = Position::find($id);
         if (!$position) {
