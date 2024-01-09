@@ -59,8 +59,8 @@ class EmployeeController extends Controller
         // Request params
         $id = $request->input('id');
         $name = $request->input('name');
-        $positions_id = $request->input('positions_id');
         $department_id = $request->input('department_id');
+        $positions_id = $request->input('positions_id');
         $email = $request->input('email');
         $phone_number = $request->input('phone_number');
         $address = $request->input('address');
