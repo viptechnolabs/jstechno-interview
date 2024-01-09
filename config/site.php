@@ -32,6 +32,11 @@ return [
             'icon' => 'fa fa-user',
             'route' => 'employee.index',
         ],
+        [
+            'title' => 'Attendance',
+            'icon' => 'fa fa-clock-o',
+            'route' => 'attendance.index',
+        ],
     ],
     'developer' => [
         'name' => '',

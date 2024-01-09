@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
@@ -97,6 +98,16 @@ Route::middleware('auth')->group(function () {
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('', 'update')->name('update');
             Route::delete('', 'destroy')->name('destroy');
+        });
+
+    // Attendance
+    Route::prefix('attendance')
+        ->as('attendance.')
+        ->controller(AttendanceController::class)
+        ->group(function () {
+            Route::get('', 'index')->name('index');
+            Route::get('add', 'add')->name('add');
+            Route::post('store', 'store')->name('store');
         });
 
 });
