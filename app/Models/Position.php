@@ -19,9 +19,9 @@ class Position extends Model
         return $this->hasMany(Employee::class);
     }
 
-    public function salaries(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function salary(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(Salary::class);
+        return $this->hasOne(Salary::class);
     }
 
 }
