@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Http\Requests\Request;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -27,4 +28,26 @@ class Handler extends ExceptionHandler
             //
         });
     }
+   /* public function render($request, Throwable $exception)
+    {
+        if ($request->is('api*')) {
+            // Return JSON response for API routes
+            return $this->renderForApi($request, $exception);
+        }
+
+        return parent::render($request, $exception);
+    }
+
+    protected function renderForApi(Request $request, Throwable $exception)
+    {
+        // Customize the response for API routes
+        $statusCode = method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : 500;
+
+        return response()->json([
+            'error' => [
+                'code' => $statusCode,
+                'message' => $exception->getMessage(),
+            ],
+        ], $statusCode);
+    }*/
 }

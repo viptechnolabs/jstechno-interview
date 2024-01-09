@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\DepartmentController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\ProfileController;
 use Illuminate\Http\Request;
@@ -30,9 +31,21 @@ Route::prefix('auth')
 // Auth Routes
 Route::middleware('auth:sanctum')
     ->group(function () {
+
         // Profile
         Route::prefix('profile')->controller(ProfileController::class)->group(function () {
             Route::get('', 'show');
             Route::get('logout', 'logout');
         });
+
+        // Department
+        Route::prefix('department')
+            ->controller(DepartmentController::class)
+            ->group(function () {
+                Route::get('', 'index')->name('index');
+                Route::get('{slug}', 'details')->name('details');
+                Route::post('store', 'store')->name('store');
+                Route::put('update', 'update')->name('update');
+                Route::delete('{slug}', 'delete')->name('delete');
+            });
     });
