@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AttendanceController;
 use App\Http\Controllers\API\DepartmentController;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\LoginController;
@@ -77,6 +78,17 @@ Route::middleware('auth:sanctum')
         // Employee
         Route::prefix('employee')
             ->controller(EmployeeController::class)
+            ->group(function () {
+                Route::get('', 'index')->name('index');
+                Route::get('{id}', 'details')->name('details');
+                Route::post('store', 'store')->name('store');
+                Route::put('update', 'update')->name('update');
+                Route::delete('{id}', 'delete')->name('delete');
+            });
+
+        // Attendance
+        Route::prefix('attendance')
+            ->controller(AttendanceController::class)
             ->group(function () {
                 Route::get('', 'index')->name('index');
                 Route::get('{id}', 'details')->name('details');
