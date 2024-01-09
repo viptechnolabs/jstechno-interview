@@ -30,7 +30,7 @@ class SalaryController extends Controller
         $hra = $request->input('hra');
         $da = $request->input('da');
         $other_allowances = $request->input('other_allowances');
-        $gross_salary = $request->input('gross_salary');
+        $gross_salary = $basic_salary + $hra + $da + $other_allowances;
 
         $salary = new Salary();
         $salary->position_id = $positions_id;

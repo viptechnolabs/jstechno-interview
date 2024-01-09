@@ -12,7 +12,6 @@ class SalaryRequest extends Request
             'hra' => 'required',
             'da' => 'required',
             'other_allowances' => 'required',
-            'gross_salary' => 'required',
         ];
     }
 }

@@ -68,12 +68,6 @@
                                 <input type="number" class="form-control" data-validate-length-range="2" data-validate-words="1" name="other_allowances" placeholder="30000" required="required" />
                             </div>
                         </div>
-                        <div class="field item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3  label-align">Gross Salary<span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6">
-                                <input type="number" class="form-control" data-validate-length-range="2" data-validate-words="1" name="gross_salary" placeholder="30000" required="required" />
-                            </div>
-                        </div>
                         <div class="ln_solid">
                             <div class="form-group">
                                 <div class="col-md-6 mt-2 offset-md-3">
