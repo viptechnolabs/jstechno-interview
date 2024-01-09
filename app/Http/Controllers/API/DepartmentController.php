@@ -36,7 +36,7 @@ class DepartmentController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): DepartmentResource
     {
         // Request params
         $name = $request->input('name');
@@ -53,7 +53,7 @@ class DepartmentController extends Controller
             ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request): DepartmentResource
     {
         // Request params
         $id = $request->input('id');
@@ -71,7 +71,7 @@ class DepartmentController extends Controller
             ]);
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $department = Department::find($id);
         if (!$department) {
